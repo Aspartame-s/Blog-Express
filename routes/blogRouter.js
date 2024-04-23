@@ -7,6 +7,8 @@ const { SuccessModel, ErrorModel } = require('../model/resModel')
 
 /* GET users listing. */
 router.get('/list', function(req, res, next) {
+console.log(req.session)
+    
     let author = req.query.author || ''
     const keyword = req.query.keyword || ''
     // if(req.query.isadmin) {

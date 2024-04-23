@@ -4,7 +4,7 @@ const {REDIS_CONFIG} = require('../config/db')
 //创建客户端
 const redisClient = redis.createClient({
     url: `redis://${REDIS_CONFIG.host}:${REDIS_CONFIG.port}`,
-    legacyMode: true
+    // legacyMode: true
 })
 
 //连接
