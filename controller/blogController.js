@@ -2,7 +2,7 @@ const {exec} = require('../db/mysql')
 const xss = require('xss')
 //获取博客列表
 const getList = (author, keyword) => {
-    console.log(author)
+    console.log('author is',author, 111223)
     let sql = `select * from blogs where 1=1 `
     if(author) {
         sql += `and author='${author}' `

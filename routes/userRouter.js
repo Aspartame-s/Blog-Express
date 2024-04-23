@@ -16,8 +16,19 @@ router.post('/login', function (req, res, next) {
             return
         }
 
-        res.json(new ErrorModel('登录失败，请检查用户名和密码1234'))
+        res.json(new ErrorModel('登录失败，请检查用户名和密码'))
     })
 });
+
+router.get('/get-cookie', (req, res, next) => {
+    const session = req.session
+    if (session.viewNum == null) {
+        session.viewNum = 0
+    }
+    session.viewNum++
+    res.json({
+        viewNum: session.viewNum
+    })
+})
 
 module.exports = router;
