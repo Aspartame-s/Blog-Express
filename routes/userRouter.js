@@ -20,15 +20,30 @@ router.post('/login', function (req, res, next) {
     })
 });
 
-router.get('/get-cookie', (req, res, next) => {
-    const session = req.session
-    if (session.viewNum == null) {
-        session.viewNum = 0
+router.get('/login-test', (req, res, next) => {
+    console.log(req.session)
+    if(req.session.username) {
+        res.json({
+            errno: 0,
+            msg: '登录成功'
+        })
+        return
     }
-    session.viewNum++
     res.json({
-        viewNum: session.viewNum
+        errno: 1,
+        msg: '未登录'
     })
 })
+
+// router.get('/test-session', (req, res, next) => {
+//     const session = req.session
+//     if (session.viewNum == null) {
+//         session.viewNum = 0
+//     }
+//     session.viewNum++
+//     res.json({
+//         viewNum: session.viewNum
+//     })
+// })
 
 module.exports = router;

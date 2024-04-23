@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session')
+//生成redisstore
+const RedisStore = require('connect-redis')(session)
 
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
@@ -20,13 +22,23 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//生成redis连接对象（客户端）
+const redisClient = require('./db/redis')
+
+//生成sessionStore
+const sessionStore = new RedisStore({
+  client: redisClient
+})
+
 app.use(session({
   secret: 'Aspartame_Cjh_1997',
   cookie: {
     // path: '/',   // 默认配置
     // httpOnly: true,  // 默认配置
     maxAge: 24 * 60 * 60 * 1000
-  }
+  },
+  store: sessionStore //将session存在redis中 sessionStore就是RedisStore构造函数生成的
 }))
 // app.use(express.static(path.join(__dirname, 'public')));
 
