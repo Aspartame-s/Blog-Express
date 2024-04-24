@@ -7,9 +7,6 @@ const session = require('express-session')
 //生成redisstore
 let RedisStore = require('connect-redis').default
 
-const c = require('connect-redis');
-console.log(c)
-
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 const blogRouter = require('./routes/blogRouter')
@@ -31,20 +28,21 @@ const redisClient = require('./db/redis')
 
 //生成sessionStore
 const sessionStore = new RedisStore({
-  client: redisClient
+  client: redisClient,
+  // prefix: "myapp:",
 })
 
 
 app.use(session({
   secret: 'Aspartame_Cjh_1997',
   cookie: {
-    // path: '/',   // 默认配置
-    // httpOnly: true,  // 默认配置
+    path: '/',   // 默认配置
+    httpOnly: true,  // 默认配置
     maxAge: 24 * 60 * 60 * 1000
   },
   store: sessionStore, //将session存在redis中 sessionStore就是RedisStore构造函数生成的
-  resave: false,
-  saveUninitialized: false
+  // resave: false,
+  // saveUninitialized: false
 }))
 // app.use(express.static(path.join(__dirname, 'public')));
 

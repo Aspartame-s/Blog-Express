@@ -6,7 +6,6 @@ const { SuccessModel, ErrorModel } = require('../model/resModel')
 router.post('/login', function (req, res, next) {
     const { username, password } = req.body
     const result = login(username, password)
-    console.log(result)
     return result.then(data => {
         console.log(data)
         if (data.username) {
