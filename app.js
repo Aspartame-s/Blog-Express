@@ -41,8 +41,8 @@ app.use(session({
     maxAge: 24 * 60 * 60 * 1000
   },
   store: sessionStore, //将session存在redis中 sessionStore就是RedisStore构造函数生成的
-  // resave: false,
-  // saveUninitialized: false
+  resave: false,
+  saveUninitialized: false
 }))
 // app.use(express.static(path.join(__dirname, 'public')));
 
