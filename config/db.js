@@ -16,7 +16,9 @@ if(env == 'dev') {
     //redis 配置
     REDIS_CONFIG = {
         port: '6379',
-        host: '127.0.0.1'
+        host: '127.0.0.1',
+        user: 'redis',
+        password: 'password'
     }
 }
 
